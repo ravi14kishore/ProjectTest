@@ -1,6 +1,7 @@
 package com.example.hp.findyourtechnician;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,10 +14,21 @@ import android.widget.TextView;
 
 public class technicians_list extends AppCompatActivity {
 
+    String CategorySelected,SubCategorySelected;
+    TextView Category,SubCategory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_technicians_list);
+        Intent intent = getIntent();
+        CategorySelected = intent.getStringExtra("Category");
+        SubCategorySelected = intent.getStringExtra("SubCategory");
+        Category = (TextView)findViewById(R.id.CategorytextView);
+        SubCategory = (TextView)findViewById(R.id.SubCategorytextView);
+        Category.setText(CategorySelected);
+        SubCategory.setText(SubCategorySelected);
+
 
         String[] techniciannames;
         String[] experience;

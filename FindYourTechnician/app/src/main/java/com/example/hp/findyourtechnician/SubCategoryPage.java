@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,15 +18,18 @@ public class SubCategoryPage extends AppCompatActivity {
 
     Spinner ActivitySubCategory_Spinner;
     ArrayAdapter<CharSequence> ActivitySubCategory_adapter;
-    String SubCategorySelected;
-    TextView ActivitySubCategory_DescriptionTextView;
+    String SubCategorySelected,Category;
+    TextView ActivitySubCategory_DescriptionTextView,ErrorText;
     EditText ActivitySubCategory_Description;
+    Button ActivitySubCategory_GetList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_category_page);
         Intent intent = getIntent();
-        final String Category = intent.getStringExtra("Category");
+        Category = intent.getStringExtra("Category");
+
         ActivitySubCategory_Spinner = (Spinner)findViewById(R.id.ContentTechnicianDetails_spinner);
         if(Category.equalsIgnoreCase("Carpenter"))
             ActivitySubCategory_adapter = ArrayAdapter.createFromResource(this,R.array.Carpenter_SubCategory,android.R.layout.simple_spinner_item);
@@ -42,16 +46,13 @@ public class SubCategoryPage extends AppCompatActivity {
         ActivitySubCategory_Spinner.setAdapter(ActivitySubCategory_adapter);
         ActivitySubCategory_DescriptionTextView = (TextView)findViewById(R.id.ContentSubCategory_DescriptionTextView);
         ActivitySubCategory_Description = (EditText)findViewById(R.id.ContentSubCategory_Description);
+        ActivitySubCategory_GetList = (Button)findViewById(R.id.ContentSubCategory_GetButton);
+        ErrorText = (TextView)findViewById(R.id.ErrorTextView);
 
         ActivitySubCategory_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SubCategorySelected = (String) parent.getItemAtPosition(position);
-                Intent intent = new Intent(SubCategoryPage.this,technicians_list.class);
-                intent.putExtra("Category",Category);
-                intent.putExtra("SubCategory",SubCategorySelected);
-                startActivity(intent);
-
             }
 
             @Override
@@ -60,6 +61,19 @@ public class SubCategoryPage extends AppCompatActivity {
             }
         });
 
+
+    }
+    public void GetTechnicianList(View view)
+    {
+        if(SubCategorySelected.equalsIgnoreCase("Other")&&(ActivitySubCategory_Description.getText().toString().trim().equalsIgnoreCase(""))){
+            ErrorText.setVisibility(View.VISIBLE);
+        }
+        else {
+            Intent intent = new Intent(SubCategoryPage.this, technicians_list.class);
+            intent.putExtra("Category", Category);
+            intent.putExtra("SubCategory", SubCategorySelected);
+            startActivity(intent);
+        }
     }
 
 }
