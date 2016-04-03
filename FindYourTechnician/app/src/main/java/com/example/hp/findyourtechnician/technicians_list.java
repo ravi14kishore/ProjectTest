@@ -47,38 +47,38 @@ public class technicians_list extends AppCompatActivity {
         VivzAdapter adapter=new VivzAdapter(this,techniciannames,ratings,experience,basecharges);
     }
 
-    class VivzAdapter extends ArrayAdapter<String>{
-        Context context;
-        String[] nameArray;
-        String[] ratingsArray;
-        String[] experienceArray;
-        String[] chargesArray;
-        VivzAdapter(Context c,String[] names,String[] rat,String[] exp,String[] chrgs){
-            super(c,R.layout.row_layout,R.id.New_User,names);
-            this.context=c;
-            this.nameArray=names;
-            this.ratingsArray=rat;
-            this.experienceArray=exp;
-            this.chargesArray=chrgs;
-        }
+}
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row=inflater.inflate(R.layout.row_layout,parent,false);
-
-
-            TextView mytechnician=(TextView) row.findViewById(R.id.TechnicianNametextView);
-            TextView myexperience=(TextView) row.findViewById(R.id.ExperiencetextView);
-            TextView mycharges=(TextView) row.findViewById(R.id.BaseChargestextView);
-            TextView myratings=(TextView) row.findViewById(R.id.RatingstextView);
-
-            mytechnician.setText(nameArray[position]);
-            myexperience.setText(nameArray[position]);
-            mycharges.setText(nameArray[position]);
-            myratings.setText(nameArray[position]);
-            return row;
-        }
+class VivzAdapter extends ArrayAdapter<String>{
+    Context context;
+    String[] nameArray;
+    String[] ratingsArray;
+    String[] experienceArray;
+    String[] chargesArray;
+    VivzAdapter(Context c,String[] names,String[] rat,String[] exp,String[] chrgs){
+        super(c,R.layout.row_layout,R.id.New_User,names);
+        this.context=c;
+        this.nameArray=names;
+        this.ratingsArray=rat;
+        this.experienceArray=exp;
+        this.chargesArray=chrgs;
     }
 
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View row=inflater.inflate(R.layout.row_layout,parent,false);
+
+
+        TextView mytechnician=(TextView) row.findViewById(R.id.TechnicianNametextView);
+        TextView myexperience=(TextView) row.findViewById(R.id.ExperiencetextView);
+        TextView mycharges=(TextView) row.findViewById(R.id.BaseChargestextView);
+        TextView myratings=(TextView) row.findViewById(R.id.RatingstextView);
+
+        mytechnician.setText(nameArray[position]);
+        myexperience.setText(nameArray[position]);
+        mycharges.setText(nameArray[position]);
+        myratings.setText(nameArray[position]);
+        return row;
+    }
 }

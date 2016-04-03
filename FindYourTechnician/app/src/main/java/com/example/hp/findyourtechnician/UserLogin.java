@@ -78,5 +78,10 @@ public class UserLogin extends AppCompatActivity {
         Intent intent = new Intent(UserLogin.this, UserRegistration.class);
         startActivity(intent);
     }
+    public void ForgotPassword(View view)
+    {
+        Intent intent = new Intent(UserLogin.this,ForgotPassword.class);
+        startActivity(intent);
+    }
 
 }

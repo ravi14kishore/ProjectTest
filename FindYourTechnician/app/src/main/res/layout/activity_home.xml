@@ -19,11 +19,12 @@
         android:id="@+id/linearLayout"
         android:clickable="false">
 
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:id="@+id/Location_Search"
-            android:gravity="right" />
+            android:layout_weight="1"
+            android:text="Enter Search Location" />
     </LinearLayout>
 
     <LinearLayout
