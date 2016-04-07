@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -46,6 +47,7 @@ public class Home extends AppCompatActivity {
     double PresentLocationLatitude = 0;
     double PresentLocationLongitude = 0;
     StringBuilder UserPresentAddress;
+    Button HomeActivity_EditProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         EditText s = (EditText) findViewById(R.id.Location_Search);
+        HomeActivity_EditProfile = (Button)findViewById(R.id.Home_EditProfileButton);
         //s.setQueryHint("Enter search location");
 
         PresentLocationGeocoder = new Geocoder(this);
@@ -147,9 +150,9 @@ public class Home extends AppCompatActivity {
 
     }
 
-    public void User_Login(View view)
+    public void EditProfile(View view)
     {
-        Intent intent = new Intent(Home.this,UserLogin.class);
+        Intent intent = new Intent(Home.this,EditProfilePage.class);
         startActivity(intent);
     }
 
